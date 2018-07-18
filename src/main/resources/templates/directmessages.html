@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="#{appname}">Title</title>
+    <div th:replace="fragment :: css"></div>
+
+</head>
+<body>
+<nav th:replace="fragment :: navigation"></nav>
+<h1>DM's</h1>
+</body>
+<div th:replace="fragment :: js"></div>
+</html>
