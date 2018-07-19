@@ -1,9 +1,9 @@
 package com.example.demo.model.apis.newsapi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,7 +15,8 @@ public class Article {
     private String title;
     private String description;
     private String url;
-    private String urlToImage;
+    @JsonProperty("urlToImage")
+    private String image;
     private LocalDateTime publishedAt;
 
     public Article() {
@@ -61,12 +62,12 @@ public class Article {
         this.url = url;
     }
 
-    public String getUrlToImage() {
-        return urlToImage;
+    public String getImage() {
+        return image;
     }
 
-    public void setUrlToImage(String urlToImage) {
-        this.urlToImage = urlToImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public LocalDateTime getPublishedAt() {
@@ -85,7 +86,7 @@ public class Article {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", url='" + url + '\'' +
-                ", urlToImage='" + urlToImage + '\'' +
+                ", image='" + image + '\'' +
                 ", publishedAt=" + publishedAt +
                 '}';
     }

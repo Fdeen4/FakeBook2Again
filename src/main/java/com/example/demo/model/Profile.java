@@ -28,7 +28,7 @@ public class Profile {
     @OneToMany(mappedBy = "profile")
     private Set<PreviousPost>posts;
 
-    @OneToMany(mappedBy = "profile")
+    @OneToMany
     private Set<Friend> friends;
 
     @OneToOne

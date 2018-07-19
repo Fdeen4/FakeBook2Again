@@ -28,17 +28,27 @@ public class AppUser {
     @OneToMany(mappedBy = "recipient")
     private Set<Message> sentMsgs;
 
-    @OneToOne
+    @OneToOne(mappedBy = "profileOwner")
     private Profile profile;
+    private boolean hasProfile = false;
+
+    @ManyToMany(mappedBy = "friends")
+    private Set<Profile> profilesOfFriends;
 
     public AppUser() {
         roles = new HashSet<>();
+        inbox = new HashSet<>();
+        sentMsgs = new HashSet<>();
+        profilesOfFriends = new HashSet<>();
     }
 
     public AppUser(String username, String password) {
         this.username = username;
         setPassword(password);
         roles = new HashSet<>();
+        inbox = new HashSet<>();
+        sentMsgs = new HashSet<>();
+       /* profilesOfFriends = new HashSet<>();*/
     }
 
     public long getId() {
@@ -102,6 +112,32 @@ public class AppUser {
         sentMsgs.add(message);
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+        hasProfile = true;
+    }
+
+    public void setHasProfile(boolean value){hasProfile = value;}
+    public boolean hasProfile(){
+        return hasProfile;
+    }
+
+    public boolean isHasProfile() {
+        return hasProfile;
+    }
+
+    public Set<Profile> getProfilesOfFriends() {
+        return profilesOfFriends;
+    }
+
+    public void setProfilesOfFriends(Set<Profile> profilesOfFriends) {
+        this.profilesOfFriends = profilesOfFriends;
+    }
+
     public boolean isAdmin(){
         for (UserRole role : getRoles()){
             if (role.toString().equals("ADMIN"))
@@ -109,13 +145,4 @@ public class AppUser {
         }
         return false;
     }
-
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
 }

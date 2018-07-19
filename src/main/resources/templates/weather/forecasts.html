@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="#{appname}">Title</title>
+    <div th:replace="fragment :: css"></div>
+</head>
+<body>
+<nav th:replace="fragment :: navigation"></nav>
+<div class="container mt-5">
+    <a href="https://www.apixu.com/" class="btn">Powered By APIXU.com</a>
+    <div class="card mb-5" th:each="forecast : ${forecasts}" th:inline="text">
+        <div class="card-header">[[${forecast.date}]]</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><img th:src="${forecast.stat.condition.icon}" alt="weather icon"> [[${forecast.stat.condition.text}]]</li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-start">
+                    <div class="w-25"><span>Sunrise: [[${forecast.astro.sunrise}]]</span><br><span>Sunset: [[${forecast.astro.sunset}]]</span></div>
+                    <div class="w-25"><span>Moonrise: [[${forecast.astro.moonrise}]]</span><br><span>Moonset: [[${forecast.astro.moonset}]]</span></div>
+                    <div class=""><span>Max Temp: [[${forecast.stat.maxtemp_c}]] celsius</span><br><span>Min Temp: [[${forecast.stat.mintemp_c}]] celsius</span></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="d-flex justify-content-start">
+                    <div class="w-25"><span>Temp: [[${forecast.stat.avgtemp_c}]]</span><br><span>Precip: [[${forecast.stat.totalprecip_in}]] inches</span></div>
+                    <div class="w-25"><span>Max Wind: [[${forecast.stat.maxwind_mph}]] mph</span><br><span>Visibility: [[${forecast.stat.avgvis_miles}]] miles</span></div>
+                    <div class=""><span>Humidity: [[${forecast.stat.avghumidity}]]</span><br><span>UV index: [[${forecast.stat.uv}]]</span></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<div th:replace="fragment :: js"></div>
+</html>
