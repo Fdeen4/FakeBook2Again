@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.time.LocalDateTime;
 
 @Controller
@@ -38,15 +37,11 @@ public class HomeController {
     public String home2() {
         return "index";
     }
-
-
-
     @RequestMapping("/headlines")
     public String headlines(Model model) {
         model.addAttribute("articles", news.articles());
         return "news/headlines";
     }
-
     @RequestMapping("/forecasts")
     public String weatherForecasts(Model model) {
         model.addAttribute("forecasts", weather.forecasts());
@@ -67,7 +62,6 @@ public class HomeController {
         }
         return "redirect:/";
     }
-
     @RequestMapping("/settings")
     public String userSet(){
         return "usersettings";
@@ -97,6 +91,6 @@ public class HomeController {
     public String showProfile(Model model, Authentication auth){
         model.addAttribute("profile", profiles.findByUsername(auth.getName()));
         System.out.println(profiles.findByUsername(auth.getName()).toString());
-        return "users/profile";
+        return "/users/profile";
     }
 }

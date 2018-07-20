@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     UserService users;
 
-    @RequestMapping("/") public String showProfile(Model model, Authentication authentication){
+    @RequestMapping("/profile") public String showProfile(Model model, Authentication authentication){
         AppUser thisUser = users.findUser(authentication);
         if (thisUser.hasProfile())
             model.addAttribute("profile", users.findProfile(authentication));
